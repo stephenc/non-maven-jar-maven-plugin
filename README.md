@@ -8,7 +8,7 @@ There is a rare situation that this plugin aims to address. Here is the use case
     (either an internal repository if the authors are within your organization or a repository like
     [Central](http://repo.maven.apache.org/maven2/) where they are outside your organization)
   * You are unwilling to either have an internal Maven repository or take part in the process for uploading
-    their dependencies to a a repository like [Central](http://repo.maven.apache.org/maven2/)
+    their dependencies to a repository like [Central](http://repo.maven.apache.org/maven2/)
 
 Now good citizens would solve this issue by changing their stance to the last point in that use-case, but if you wish
 to insist on being a bad citizen, the Non-Maven Jar Maven Plugin is here to help you get your build done...
@@ -158,3 +158,5 @@ adding a `<repository>` which is pointing to a `file:///` URI. Also if used corr
 transitioning from a bad citizen to a good citizen a lot easier as one needs only remove the
 `<packaging>non-maven-jar</packaging>` and submit the JAR and `pom.xml` as part of an upload bundle for
 [Central](http://repo.maven.apache.org/maven2/) (in other words those upload bundles are less work than you fear)
+
+[![Build Status](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/badge/icon)](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/)
