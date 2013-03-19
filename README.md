@@ -1,6 +1,8 @@
 Non-Maven Jar Maven Plugin
 ==========================
 
+[![Build Status](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/badge/icon)](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/)
+
 There is a rare situation that this plugin aims to address. Here is the use case:
 
   * You have a dependency on a third-party JAR
@@ -159,4 +161,3 @@ transitioning from a bad citizen to a good citizen a lot easier as one needs onl
 `<packaging>non-maven-jar</packaging>` and submit the JAR and `pom.xml` as part of an upload bundle for
 [Central](http://repo.maven.apache.org/maven2/) (in other words those upload bundles are less work than you fear)
 
-[![Build Status](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/badge/icon)](https://buildhive.cloudbees.com/job/stephenc/job/non-maven-jar-maven-plugin/)
