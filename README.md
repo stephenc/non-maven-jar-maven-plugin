@@ -89,6 +89,8 @@ Continuing the above example, the `dep1/pom.xml` would look something like this:
     </project>
 
 Where the auto-magic will be used to pick up the one and only JAR file from `dep1/src` and bind that into the reactor.
+If there was `dep1/src/dep1-javadoc.jar` and `dep1/src/dep1-sources.jar` then they will be picked up as secondary
+artifacts and attached with the corresponding classifiers.
 
 The `dep2/pom.xml` needs some configuration to specify where the JAR file is, as it is not using the defaults, so
 would look something like this:
@@ -127,6 +129,9 @@ would look something like this:
         </build>
 
     </project>
+
+If there was `dep2/dep2-javadoc.jar` and `dep2/dep2-sources.jar` then they will be picked up as secondary
+artifacts and attached with the corresponding classifiers.
 
 And finally the `main/pom.xml` can just list the dependencies as if they were ordinary dependencies:
 
