@@ -42,6 +42,9 @@ import java.util.Arrays;
         threadSafe = true)
 public class JarMojo extends AbstractMojo {
 
+    /**
+     * The non-maven jar file.
+     */
     @Parameter(property = "non-maven-jar.file", defaultValue = "${basedir}/src")
     private File jarFile;
 
