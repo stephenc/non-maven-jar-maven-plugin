@@ -15,6 +15,15 @@
  */
 package com.github.stephenc.nonmavenjar;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -27,16 +36,6 @@ import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * A helper mojo for when you have 3rd party non-maven jars to integrate into a maven project.
  *
@@ -44,10 +43,10 @@ import java.util.TreeMap;
  * @since 1.0
  */
 @Mojo(name = "jar",
-        aggregator = false,
-        defaultPhase = LifecyclePhase.COMPILE, // needs to be compile to lest the test phase work
-        requiresProject = true,
-        threadSafe = true)
+      aggregator = false,
+      defaultPhase = LifecyclePhase.COMPILE, // needs to be compile to lest the test phase work
+      requiresProject = true,
+      threadSafe = true)
 public class JarMojo extends AbstractMojo {
 
     /**
@@ -123,7 +122,13 @@ public class JarMojo extends AbstractMojo {
         }
         for (Map.Entry<String, File> entry : selection.entrySet()) {
             if (StringUtils.isEmpty(entry.getKey())) {
-                projectHelper.attachArtifact(project, "jar", entry.getValue());
+                if (project.getArtifact().getFile() != null && project.getArtifact().getFile().isFile()) {
+                    throw new MojoExecutionException("You have to use a classifier "
+                            + "to attach supplemental artifacts to the project. Expected to set " + entry.getValue()
+                            + " as the project artifact but found it already set to " + project.getArtifact().getFile()
+                    );
+                }
+                project.getArtifact().setFile(entry.getValue());
             } else {
                 projectHelper.attachArtifact(project, "jar", entry.getKey(), entry.getValue());
             }
